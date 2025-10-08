@@ -16,6 +16,9 @@ describe('Orange HRM Tests', () => {
     dataField: "[placeholder='yyyy-dd-mm']",
     dateCloseButton: '.--close',
     submitButton: "[type='submit']",
+    selectButton: '.oxd-select-text--arrow',
+    selectCountry:':nth-child(27)',
+    selectMartial: '.oxd-select-dropdown > :nth-child(2)'
   
   }
   it.only('User Info Update - Success', () => {
@@ -34,6 +37,10 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorList.genericField).eq(5).clear().type('DLNTest')
     cy.get(selectorList.genericField).eq(6).clear().type('2026-07-10')
     cy.get(selectorList.dateCloseButton).click()
+    cy.get(selectorList.selectButton).eq(0).click()
+    cy.get(selectorList.selectCountry).click()
+    cy.get(selectorList.selectButton).eq(1).click()
+    cy.get(selectorList.selectMartial).click()
    // cy.get(selectorList.genericField).eq(7).type('ssnNumberTest')
    // cy.get(selectorList.genericField).eq(8).type('sinNumberTest')
    cy.get(selectorList.submitButton).eq(0).click()
