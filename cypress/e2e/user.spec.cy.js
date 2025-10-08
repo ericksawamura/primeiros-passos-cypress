@@ -1,15 +1,17 @@
 import userData from '../fixtures/userData.json'
+import LoginPage from '../pages/loginPage.js'
+import DashboardPage from '../pages/dashboardPage.js'
+import MenuPage from '../pages/menuPage.js'
+
+const loginPage = new LoginPage()
+const dashboardPage = new DashboardPage()
+const menuPage = new MenuPage()
 
 describe('Orange HRM Tests', () => {
 
-  const selectorList = {
-    usernameField: "[name='username']",
-    passwordField: "[name='password']",
-    loginButton: '.oxd-button',
-    sectionTitleTopBar: '.oxd-topbar-header-breadcrumb > .oxd-text',
-    dashboardGrid: '.orangehrm-dashboard-grid',
-    wrongCredentialAlert: '.oxd-alert',
-    myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
+  const selectorList = { 
+    
+    
     firstNameField: "[name='firstName']",
     lastNameField: "[name='lastName']",
     genericField: '.oxd-input--active',
@@ -22,13 +24,11 @@ describe('Orange HRM Tests', () => {
   
   }
   it.only('User Info Update - Success', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorList.usernameField).type(userData.userSuccess.username)
-    cy.get(selectorList.passwordField).type(userData.userSuccess.password)
-    cy.get(selectorList.loginButton).click()
-    cy.location('pathname').should('equal' , '/web/index.php/dashboard/index')
-    cy.get(selectorList.dashboardGrid)
-    cy.get(selectorList.myInfoButton).click()
+    loginPage.acessLoginPage()
+    loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
+    dashboardPage.checkDashboardPage()
+    menuPage.acessMyInfo()
+    
     cy.get(selectorList.firstNameField).clear().type('FirstNameTest')
     cy.get(selectorList.lastNameField).clear().type('LastNameTest')
    // cy.get(selectorList.genericField).eq(3).clear().type('NickNameTest')
