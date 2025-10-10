@@ -1,4 +1,5 @@
 class DashboardPage {
+    
     selectorList() {
         const selector = {
             dashboardGrid: '.orangehrm-dashboard-grid',

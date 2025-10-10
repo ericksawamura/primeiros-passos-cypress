@@ -1,4 +1,5 @@
 class MenuPage {
+    
     selectorList() {
         const selector = {
             myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
